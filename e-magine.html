@@ -271,9 +271,9 @@ a { color: inherit; text-decoration: none; }
     <!-- Case introduction -->
     <div style="padding-bottom: clamp(32px, 5vw, 56px); border-bottom: 1px solid var(--line-2); margin-bottom: clamp(32px, 5vw, 56px);">
       <div style="font-size: clamp(28px, 4vw, 42px); font-weight: 500; letter-spacing: -0.02em; color: var(--ink); font-family: var(--font-serif); font-style: italic; margin-bottom: 20px;">The case</div>
-      <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0 0 1.1em;">E-MAGINE is a multi-site healthcare organisation handling electronic Protected Health Information across three original locations — a Main site in Virginia, an Orlando branch, and a centralised Data Center — with a Chicago office added during the project.</p>
-      <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0 0 1.1em;">When the redesign began, the network was not in a state appropriate for an organisation handling ePHI. The Data Center was running hubs instead of managed switches, broadcasting all traffic with no ability to control who could see it. Orlando had a consumer-grade wireless router with no enterprise security features and a passive network sniffer permanently connected to the environment — giving uncontrolled visibility into traffic in transit. Across all sites, IP addressing was unstructured and inconsistent. There was no firewall segmentation, no encrypted remote access, no centralised audit logging, and no access controls that met HIPAA standards. The Data Center also had a direct internet path that bypassed perimeter inspection entirely.</p>
-      <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0;">The goal of the redesign was to bring all four sites behind a unified, compliant network — replacing non-compliant equipment, segmenting traffic by function and sensitivity, enforcing encrypted access, and building audit and control mechanisms sufficient to meet HIPAA, NIST, and three state-level data privacy frameworks.</p>
+      <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0 0 1.1em;">E-MAGINE is a multi-site healthcare organisation handling electronic Protected Health Information across three original locations: a Main site in Virginia, an Orlando branch, and a centralised Data Center, with a Chicago office added during the project.</p>
+      <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0 0 1.1em;">When the redesign began, the network was not in a state appropriate for an organisation handling ePHI. The Data Center was running hubs instead of managed switches, broadcasting all traffic with no ability to control who could see it. Orlando had a consumer-grade wireless router with no enterprise security features and a passive network sniffer permanently connected to the environment, giving uncontrolled visibility into traffic in transit. Across all sites, IP addressing was unstructured and inconsistent. There was no firewall segmentation, no encrypted remote access, no centralised audit logging, and no access controls that met HIPAA standards. The Data Center also had a direct internet path that bypassed perimeter inspection entirely.</p>
+      <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0;">The goal of the redesign was to bring all four sites behind a unified, compliant network. This meant replacing non-compliant equipment, segmenting traffic by function and sensitivity, enforcing encrypted access, and building audit and control mechanisms sufficient to meet HIPAA, NIST, and three state-level data privacy frameworks.</p>
     </div>
 
     <!-- Stats row -->
@@ -426,7 +426,7 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
           </div>
           <h3>VLAN Segmentation</h3>
-          <p>Orlando uses VLANs 10–50 for departmental isolation. DC uses VLANs 10 (Management), 20 (Infrastructure), and 30 (ePHI) — each on separate subnets limiting blast radius.</p>
+          <p>Orlando uses VLANs 10–50 for departmental isolation. DC uses VLANs 10 (Management), 20 (Infrastructure), and 30 (ePHI), each on separate subnets limiting blast radius.</p>
           <span class="feature__tag">VLANs 10–50 · ePHI isolation</span>
         </div>
         <div class="feature">
@@ -450,7 +450,7 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <h3>Remote Access VPN</h3>
-          <p>Simulated via HomeRouter-PT VirtualNetwork — Remote User connects through a virtual router to the Main ASA, representing an encrypted remote access tunnel into the network.</p>
+          <p>Simulated via HomeRouter-PT VirtualNetwork. The Remote User connects through a virtual router to the Main ASA, representing an encrypted remote access tunnel into the network.</p>
           <span class="feature__tag">VirtualNetwork · Main ASA</span>
         </div>
         <div class="feature">
@@ -493,8 +493,8 @@ a { color: inherit; text-decoration: none; }
           <p>Every network control maps to a specific section of the HIPAA Security Rule or NIST guidance. Applied across all four sites.</p>
         </div>
         <ul class="compliance-list">
-          <li><code>§164.306</code><span>Security standards — general rules and flexibility of approach.</span></li>
-          <li><code>§164.312</code><span>Technical safeguards — access control, audit, integrity, transmission security.</span></li>
+          <li><code>§164.306</code><span>Security standards: general rules and flexibility of approach.</span></li>
+          <li><code>§164.312</code><span>Technical safeguards: access control, audit, integrity, and transmission security.</span></li>
           <li><code>NIST SP 800-41</code><span>Firewall placement and zone policy for enterprise perimeters.</span></li>
         </ul>
       </div>
@@ -507,10 +507,10 @@ a { color: inherit; text-decoration: none; }
           <div style="font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px;">Virginia CDPA</div>
           <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px; font-family: var(--font-mono);">Consumer Data Protection Act</div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Data minimisation — ePHI access restricted to Finance and Clinical VLANs only</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Purpose limitation — ACLs on Main-R1 enforce traffic policy by role</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Security safeguards — Main ASA, DMZ, and TACACS+ audit logging</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Consumer rights — Syslog server at 172.16.10.3 enables access audit trail</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Data minimisation: ePHI access restricted to Finance and Clinical VLANs only</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Purpose limitation: ACLs on Main-R1 enforce traffic policy by role</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Security safeguards: Main ASA, DMZ, and TACACS+ audit logging</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Consumer rights: Syslog server at 172.16.10.3 enables access audit trail</li>
           </ul>
         </div>
 
@@ -519,10 +519,10 @@ a { color: inherit; text-decoration: none; }
           <div style="font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px;">Florida FIPA</div>
           <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px; font-family: var(--font-mono);">Florida Information Protection Act</div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Independent security boundary — Orlando-ASA1 enforces separate perimeter</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Data protection — VLANs 10–50 isolate clinical, admin, guest, and voice traffic</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification support — centralised audit logs in DC VLAN 10</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Disposal of PI — port security prevents rogue device data exfiltration</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Independent security boundary: Orlando-ASA1 enforces separate perimeter</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Data protection: VLANs 10–50 isolate clinical, admin, guest, and voice traffic</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification support: centralised audit logs in DC VLAN 10</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Disposal of PI: port security prevents rogue device data exfiltration</li>
           </ul>
         </div>
 
@@ -531,10 +531,10 @@ a { color: inherit; text-decoration: none; }
           <div style="font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px;">Illinois PIPA</div>
           <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px; font-family: var(--font-mono);">Personal Information Protection Act</div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Reasonable security — ACLs on Chicago-R1 limit exposure of Illinois resident data</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Network controls — 2960-24TT switches with VLAN segmentation at branch</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification — Syslog and TACACS+ logs support 72-hour notification</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Encrypted transit — all Chicago traffic crosses EIGRP WAN over authenticated links</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Reasonable security: ACLs on Chicago-R1 limit exposure of Illinois resident data</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Network controls: 2960-24TT switches with VLAN segmentation at branch</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification: Syslog and TACACS+ logs support 72-hour notification</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Encrypted transit: all Chicago traffic crosses EIGRP WAN over authenticated links</li>
           </ul>
         </div>
 
@@ -634,7 +634,7 @@ a { color: inherit; text-decoration: none; }
           <div>
             <div class="stack-item__cat">Servers · DC VLAN 30</div>
             <div class="stack-item__name">Mail · File Server</div>
-            <div class="stack-item__desc">Mail at 172.16.30.2, File at 172.16.30.3. ePHI data — access restricted to Finance and Clinical VLANs only.</div>
+            <div class="stack-item__desc">Mail at 172.16.30.2, File at 172.16.30.3. ePHI data. Access restricted to Finance and Clinical VLANs only.</div>
           </div>
         </div>
       </div>
@@ -652,7 +652,7 @@ a { color: inherit; text-decoration: none; }
         </div>
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Logical IP Addressing</div>
-          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">Subnets are organised and non-overlapping across all sites. This structured IP scheme improves routing efficiency and makes troubleshooting straightforward — each subnet maps to a specific site and function.</p>
+          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">Subnets are organised and non-overlapping across all sites. This structured IP scheme improves routing efficiency and makes troubleshooting straightforward. Each subnet maps to a specific site and function.</p>
         </div>
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">EIGRP Path Selection</div>
@@ -672,7 +672,7 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="6" height="6" rx="1"/><rect x="15" y="4" width="6" height="6" rx="1"/><rect x="3" y="14" width="6" height="6" rx="1"/><rect x="15" y="14" width="6" height="6" rx="1"/><path d="M9 7h6M9 17h6M6 10v4M18 10v4"/></svg>
           </div>
           <h3>Spine-Leaf DC</h3>
-          <p>Spine-leaf architecture supports horizontal scaling without redesigning the core — additional leaf switches can be added as server demand grows.</p>
+          <p>Spine-leaf architecture supports horizontal scaling without redesigning the core. Additional leaf switches can be added as server demand grows.</p>
           <span class="feature__tag">horizontal scale</span>
         </div>
         <div class="feature">
@@ -680,7 +680,7 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M6 8v8M18 8v8M8 6h8M8 18h8"/></svg>
           </div>
           <h3>EIGRP Auto-Discovery</h3>
-          <p>EIGRP automatically discovers and advertises new networks as sites are added to the WAN — no manual route configuration required for new locations.</p>
+          <p>EIGRP automatically discovers and advertises new networks as sites are added to the WAN, with no manual route configuration required for new locations.</p>
           <span class="feature__tag">dynamic · auto-advertise</span>
         </div>
         <div class="feature">
@@ -688,7 +688,7 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
           </div>
           <h3>VLAN Flexibility</h3>
-          <p>VLAN structure allows new departments to be added by assigning ports without reconfiguring routers — simply tag the port to the appropriate VLAN.</p>
+          <p>VLAN structure allows new departments to be added by assigning ports without reconfiguring routers. Simply tag the port to the appropriate VLAN.</p>
           <span class="feature__tag">port-based · no reconfiguration</span>
         </div>
         <div class="feature">
@@ -696,7 +696,7 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 9h20M2 15h20M9 3v18M15 3v18"/></svg>
           </div>
           <h3>Unused WAN Ports</h3>
-          <p>Serial WAN links include unused ports on routers to accommodate future site connections — adding a fifth site requires only cabling and EIGRP configuration.</p>
+          <p>Serial WAN links include unused ports on routers to accommodate future site connections. Adding a fifth site requires only cabling and EIGRP configuration.</p>
           <span class="feature__tag">expansion-ready</span>
         </div>
         <div class="feature">
@@ -704,7 +704,7 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
           </div>
           <h3>Modular ISR Routers</h3>
-          <p>Modular ISR 4321 routers support additional interface cards as traffic demands grow — bandwidth can be increased without replacing the entire router.</p>
+          <p>Modular ISR 4321 routers support additional interface cards as traffic demands grow. Bandwidth can be increased without replacing the entire router.</p>
           <span class="feature__tag">ISR 4321 · modular</span>
         </div>
       </div>
@@ -718,7 +718,7 @@ a { color: inherit; text-decoration: none; }
       <div style="display:flex; flex-direction:column; gap:10px;">
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">EIGRP DUAL Algorithm</div>
-          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">Automatically reroutes traffic when a WAN link fails using feasible successors — no manual intervention needed, no downtime for users.</p>
+          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">Automatically reroutes traffic when a WAN link fails using feasible successors. No manual intervention needed and no downtime for users.</p>
         </div>
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Dual Serial WAN Connections</div>
@@ -726,15 +726,15 @@ a { color: inherit; text-decoration: none; }
         </div>
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Spine-Leaf DC Redundancy</div>
-          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">Spine-leaf topology in the Data Center provides redundant paths between servers and the core — each leaf connects to both spine switches.</p>
+          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">Spine-leaf topology in the Data Center provides redundant paths between servers and the core. Each leaf connects to both spine switches.</p>
         </div>
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Independent ASA Boundaries</div>
-          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">ASA firewalls at Main and Orlando provide independent security boundaries — if one site is compromised, the other continues operating with its own perimeter intact.</p>
+          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">ASA firewalls at Main and Orlando provide independent security boundaries. If one site is compromised, the other continues operating with its own perimeter intact.</p>
         </div>
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">VLAN Blast Radius Containment</div>
-          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">VLAN segmentation limits the blast radius of any single device or link failure — a problem in one VLAN cannot propagate to other segments without passing ACL inspection.</p>
+          <p style="font-size:13px; color:var(--ink-2); margin:0; line-height:1.6;">VLAN segmentation limits the blast radius of any single device or link failure. A problem in one VLAN cannot propagate to other segments without passing ACL inspection.</p>
         </div>
       </div>
     </div>
@@ -849,7 +849,7 @@ a { color: inherit; text-decoration: none; }
       <p class="section__desc">Orlando branch skeleton network on physical Cisco enterprise hardware</p>
       <!-- Scope note -->
       <div style="background: var(--accent-soft); border: 1px solid var(--accent); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: var(--ink-2); line-height: 1.6;">
-        <strong style="color: var(--accent);">Scope:</strong> The live demo used physical Cisco enterprise equipment to build the <strong>Orlando branch site</strong> as a proof-of-concept skeleton network. The remaining sites (Main, Chicago, Data Center) exist in the Packet Tracer simulation. Orlando was selected because it incorporates the core design elements — inter-VLAN routing, local DHCP, ACLs, ASA firewall, and EIGRP — sufficient to validate the full design on real hardware. The wireless segment was excluded from the physical demo as the available router only had two GigE ports, both required for the ASA uplink and switch trunk.
+        <strong style="color: var(--accent);">Scope:</strong> The live demo used physical Cisco enterprise equipment to build the <strong>Orlando branch site</strong> as a proof-of-concept skeleton network. The remaining sites (Main, Chicago, Data Center) exist in the Packet Tracer simulation. Orlando was selected because it incorporates the core design elements: inter-VLAN routing, local DHCP, ACLs, ASA firewall, and EIGRP, sufficient to validate the full design on real hardware. The wireless segment was excluded from the physical demo as the available router only had two GigE ports, both required for the ASA uplink and switch trunk.
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;">
@@ -880,7 +880,7 @@ a { color: inherit; text-decoration: none; }
     <div class="section box-dark page-end" id="writeup" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
       <div class="section__label">11 — Documentation</div>
       <div class="section__title">Project documentation</div>
-      <p class="section__desc">Files pulled live from the project repository — upload your .pptx and .pkt files to see them here</p>
+      <p class="section__desc">Files pulled live from the project repository. Upload your .pptx and .pkt files to see them here</p>
       <!-- File carousel -->
       <div id="docSkeleton" style="display:flex;gap:12px;">
         <div class="sk" style="height:120px;width:200px;border-radius:var(--radius);flex-shrink:0;"></div>
