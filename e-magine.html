@@ -137,9 +137,10 @@ a { color: inherit; text-decoration: none; }
 .topo-note strong { color: var(--ink-2); }
 
 /* ── Features grid ── */
-.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 @media (max-width: 700px) { .features-grid { grid-template-columns: 1fr; } }
-@media (min-width: 701px) and (max-width: 1000px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .features-grid { grid-template-columns: 1fr; } }
+@media (min-width: 701px) and (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
 .feature { background: var(--bg-2); border: 1px solid var(--line-2); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 22px 20px; transition: background var(--t), transform var(--t); }
 .feature:hover { background: var(--accent) !important; transform: translateY(-1px); color: #fff; }
 .feature:hover h3, .feature:hover p, .feature:hover .feature__tag { color: #fff !important; }
@@ -263,7 +264,7 @@ a { color: inherit; text-decoration: none; }
       <!-- Blockquote -->
       <blockquote style="margin: 0; padding: 24px 28px; border-left: 4px solid #4A90C4; background: var(--bg-2); border-radius: 0 var(--radius) var(--radius) 0;">
         <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0 0 1.1em;">I served as project lead for the E-MAGINE Healthcare Network Redesign, responsible for the overall security architecture, ACL framework, ASA firewall configuration at both Main and Orlando sites, compliance mapping to HIPAA and three state-level data privacy laws, and the APA technical report.</p>
-        <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0 0 1.1em;">Beyond my core responsibilities, I supported the team through troubleshooting across all sites; resolving EIGRP route advertisement issues, diagnosing DHCP failures, identifying a Packet Tracer IOS limitation affecting the Orlando router, and configuring the VPN simulation path. I also assisted with the physical equipment lab, producing the Week 4 demo submission document.</p>
+        <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0 0 1.1em;">Beyond my core responsibilities, I supported the team through troubleshooting across all sites; resolving EIGRP route advertisement issues, diagnosing DHCP failures, identifying a Packet Tracer IOS limitation affecting the Orlando router, and configuring the VPN simulation path. I also assisted with the physical equipment lab and produced the Week 4 demo submission document.</p>
         <p style="font-size: 17px; color: var(--ink-2); line-height: 1.85; margin: 0;">A key design decision I made independently was adding and configuring the DMZ as a logical ASA-enforced zone on the Main firewall, isolating public-facing services from the internal network; a control required under HIPAA's transmission security standards.</p>
       </blockquote>
     </div>
@@ -392,9 +393,9 @@ a { color: inherit; text-decoration: none; }
             <div class="site__role">Serial links to Orlando-Router0 AND Router2 (Main)</div>
             <div class="site__meta">
               Spine: Nexus 3900 × 2 · Leaf: Catalyst 9300 × 2<br>
-              <code>VLAN 10</code> Management — AAA/TACACS+ · Syslog (172.16.10.x)<br>
-              <code>VLAN 20</code> Infrastructure — DHCP · DNS (172.16.20.x)<br>
-              <code>VLAN 30</code> ePHI — Mail · File Server (172.16.30.x)
+              <code>VLAN 10</code> Management: AAA/TACACS+ and Syslog (172.16.10.x)<br>
+              <code>VLAN 20</code> Infrastructure: DHCP (172.16.20.x)<br>
+              <code>VLAN 30</code> ePHI: Mail and File Server (172.16.30.x)
             </div>
           </div>
         </div>
@@ -426,8 +427,8 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/></svg>
           </div>
           <h3>VLAN Segmentation</h3>
-          <p>Orlando uses VLANs 10–50 for departmental isolation. DC uses VLANs 10 (Management), 20 (Infrastructure), and 30 (ePHI), each on separate subnets limiting blast radius.</p>
-          <span class="feature__tag">VLANs 10–50 · ePHI isolation</span>
+          <p>VLANs do not communicate with each other except via ICMP. Each VLAN is scoped to its permitted resources only, with an explicit deny at the end of every ACL. This policy is enforced consistently on all routers across all four sites.</p>
+          <span class="feature__tag">deny by default · ICMP permitted · all sites</span>
         </div>
         <div class="feature">
           <div class="feature__icon" aria-hidden="true">
@@ -458,8 +459,8 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="12" r="4"/><path d="M13 12h8"/><path d="M17 9v6"/></svg>
           </div>
           <h3>TACACS+ Centralised AAA</h3>
-          <p>TACACS+ and AAA/RADIUS servers in DC VLAN 10 (172.16.10.2). Syslog server at 172.16.10.3 for audit logging. SSH v2 on all routers, Telnet disabled.</p>
-          <span class="feature__tag">172.16.10.2 · SSH v2</span>
+          <p>TACACS+ at 172.16.10.2 handles device management authentication on all routers with local fallback. RADIUS at the same server handles wireless client authentication (WPA2 Enterprise / 802.1X) and ASA authentication for Main and Orlando. NTP synchronises clocks network-wide. Syslog at 172.16.10.3. SSH v2 on all routers, Telnet disabled.</p>
+          <span class="feature__tag">TACACS+ · RADIUS · NTP · SSH v2</span>
         </div>
         <div class="feature">
           <div class="feature__icon" aria-hidden="true">
@@ -468,6 +469,14 @@ a { color: inherit; text-decoration: none; }
           <h3>Port Security</h3>
           <p>Sticky MAC addresses on all access switches (2960-24TT at Chicago/Main, 2960 at Orlando) with violation restrict. Unauthorised devices blocked at port level.</p>
           <span class="feature__tag">sticky MAC · restrict</span>
+        </div>
+        <div class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M3 12h4M17 12h4M12 3v4M12 17v4"/><path d="M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></svg>
+          </div>
+          <h3>Department Isolation (Main)</h3>
+          <p>Sales and Marketing each reach only their shared server (10.23.1.10) and their own printer. Finance and Operations each reach only their shared server (10.23.1.130) and their own printer. No cross-department access. ICMP permitted for verification. All VLANs reach the internet.</p>
+          <span class="feature__tag">R3 ACLs · ICMP permitted · least privilege</span>
         </div>
         <div class="feature">
           <div class="feature__icon" aria-hidden="true">
@@ -489,12 +498,12 @@ a { color: inherit; text-decoration: none; }
       <!-- Federal block -->
       <div class="compliance" style="margin-bottom: 12px; background: var(--accent) !important;">
         <div>
-          <h3>HIPAA &amp; NIST — Federal</h3>
+          <h3>HIPAA &amp; NIST: Federal</h3>
           <p>Every network control maps to a specific section of the HIPAA Security Rule or NIST guidance. Applied across all four sites.</p>
         </div>
         <ul class="compliance-list">
           <li><code>§164.306</code><span>Security standards: general rules and flexibility of approach.</span></li>
-          <li><code>§164.312</code><span>Technical safeguards: access control, audit, integrity, and transmission security.</span></li>
+          <li><code>§164.312</code><span>Technical safeguards: access control, audit, integrity, and transmission security. NTP synchronisation across all devices ensures audit logs carry accurate, consistent timestamps, which is a requirement for admissible audit evidence under §164.312(b).</span></li>
           <li><code>NIST SP 800-41</code><span>Firewall placement and zone policy for enterprise perimeters.</span></li>
         </ul>
       </div>
@@ -519,10 +528,10 @@ a { color: inherit; text-decoration: none; }
           <div style="font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px;">Florida FIPA</div>
           <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px; font-family: var(--font-mono);">Florida Information Protection Act</div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Independent security boundary: Orlando-ASA1 enforces separate perimeter</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Data protection: VLANs 10–50 isolate clinical, admin, guest, and voice traffic</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification support: centralised audit logs in DC VLAN 10</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Disposal of PI: port security prevents rogue device data exfiltration</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Independent security boundary: Orlando-ASA1 enforces a separate perimeter from the Main site, limiting the scope of any Florida-side incident</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Traffic segmentation: five VLANs (10, 20, 30, 40, 50) isolate traffic by function at the Orlando branch, preventing lateral movement between segments</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification support: centralised Syslog at 172.16.10.3 and TACACS+ audit logs support FIPA's 30-day notification requirement</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Access control: port security with sticky MAC and violation restrict on Orlando switches prevents unauthorised device attachment</li>
           </ul>
         </div>
 
@@ -623,8 +632,8 @@ a { color: inherit; text-decoration: none; }
           </div>
           <div>
             <div class="stack-item__cat">Servers · DC VLAN 10</div>
-            <div class="stack-item__name">AAA/TACACS+ · Syslog</div>
-            <div class="stack-item__desc">TACACS+/RADIUS at 172.16.10.2. Syslog at 172.16.10.3. Centralised auth and audit logging for all devices.</div>
+            <div class="stack-item__name">AAA Server · TACACS+ · RADIUS · NTP</div>
+            <div class="stack-item__desc">Single server at 172.16.10.2 running TACACS+ (device management auth on all routers), RADIUS (wireless client auth via WPA2 Enterprise and ASA client auth for Main and Orlando), and NTP (clock synchronisation across all network devices). Syslog at 172.16.10.3.</div>
           </div>
         </div>
         <div class="stack-item">
@@ -645,6 +654,26 @@ a { color: inherit; text-decoration: none; }
             <div class="stack-item__cat">Servers · DC VLAN 30</div>
             <div class="stack-item__name">Mail · File Server</div>
             <div class="stack-item__desc">Mail at 172.16.30.2, File at 172.16.30.3. ePHI data. Access restricted to Finance and Clinical VLANs only.</div>
+          </div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M4 12c0-2 2-4 4-4M4 12c0 2 2 4 4 4M20 12c0-2-2-4-4-4M20 12c0 2-2 4-4 4"/></svg>
+          </div>
+          <div>
+            <div class="stack-item__cat">Cabling · LAN</div>
+            <div class="stack-item__name">Plenum Cat6 × 75</div>
+            <div class="stack-item__desc">CMP-rated plenum Cat6 patch cables across all sites. Plenum rating required for healthcare fire code compliance in commercial buildings. ~$45/cable.</div>
+          </div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg>
+          </div>
+          <div>
+            <div class="stack-item__cat">Cabling · WAN</div>
+            <div class="stack-item__name">DCE/DTE V.35 Serial × 50</div>
+            <div class="stack-item__desc">Cisco DCE/DTE V.35 serial cables for all WAN links across Main, Orlando, Chicago, and Data Center. ~$85/cable. Cables burn out fast in live environments. Quantity accounts for replacements.</div>
           </div>
         </div>
       </div>
@@ -770,7 +799,7 @@ a { color: inherit; text-decoration: none; }
               <td style="padding:14px; border-bottom:1px solid var(--line-2); color:var(--ink); font-weight:600; vertical-align:top;">Unauthorized ePHI Access</td>
               <td style="padding:14px; border-bottom:1px solid var(--line-2); vertical-align:top;"><span style="font-family:var(--font-mono); font-size:11px; font-weight:600; color:#fff; background:#c0392b; padding:3px 10px; border-radius:999px;">Critical</span></td>
               <td style="padding:14px; border-bottom:1px solid var(--line-2); vertical-align:top;"><span style="font-family:var(--font-mono); font-size:11px; font-weight:600; color:var(--accent); background:var(--accent-soft); padding:3px 10px; border-radius:999px;">Low</span></td>
-              <td style="padding:14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); vertical-align:top; line-height:1.6;">Access to ePHI is locked down at the network level. Only authorised personnel can reach DC VLAN 30, every login is authenticated through TACACS+, and all activity is logged via Syslog for audit purposes.</td>
+              <td style="padding:14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); vertical-align:top; line-height:1.6;">Access to ePHI is locked down at the network level. Only authorised personnel can reach DC VLAN 30. Every login is authenticated through TACACS+ and all activity is logged via Syslog for audit purposes.</td>
             </tr>
             <tr style="background:var(--bg-2);">
               <td style="padding:14px; border-bottom:1px solid var(--line-2); color:var(--ink); font-weight:600; vertical-align:top;">Insider Threat</td>
@@ -798,7 +827,7 @@ a { color: inherit; text-decoration: none; }
     <!-- Testing Results -->
     <div class="section box-dark" id="testing" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
       <div class="section__label">09 — Validation</div>
-      <div class="section__title">Live demo — physical build</div>
+      <div class="section__title">Live demo: physical build</div>
       <p class="section__desc">Orlando branch skeleton network on physical Cisco enterprise hardware</p>
       <!-- Scope note -->
       <div style="background: var(--accent-soft); border: 1px solid var(--accent); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: var(--ink-2); line-height: 1.6;">
@@ -845,12 +874,12 @@ a { color: inherit; text-decoration: none; }
 
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">DC Spine-Leaf Hardware</div>
-          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design uses Cisco Nexus 3900 switches at the spine layer and Catalyst 9300 switches at the leaf layer. Packet Tracer does not include either device, so these were substituted with Catalyst 3650-24PS switches across both layers. The logical topology, VLAN assignments, and inter-switch links remain identical to the production design.</p>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design uses Cisco Nexus 3900 switches at the spine layer and Catalyst 9300 switches at the leaf layer. Packet Tracer does not include either device. They were substituted with Catalyst 3650-24PS switches across both layers. The logical topology, VLAN assignments, and inter-switch links remain identical to the production design.</p>
         </div>
 
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Wireless Access Points</div>
-          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design uses Cisco Catalyst 9130AXI enterprise access points at Main and Orlando. Packet Tracer substitutes a Linksys WRT300N home router in wireless mode. The 9130AXI supports WPA2 Enterprise with 802.1X authentication; the WRT300N cannot simulate 802.1X flows. This is a documented PT limitation — the wireless security posture is correctly designed but could not be fully validated in simulation.</p>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design uses Cisco Catalyst 9130AXI enterprise access points at Main and Orlando. Packet Tracer substitutes a Linksys WRT300N home router in wireless mode. RADIUS authentication was configured on the AAA server at 172.16.10.2 with the WLC registered as a client (192.168.23.2, shared secret Ecpi1234), targeting WPA2 Enterprise / 802.1X for staff wireless. However the WRT300N cannot simulate 802.1X authentication flows. This is a documented PT device limitation. The RADIUS configuration is in place and correct; full wireless auth validation requires production hardware.</p>
         </div>
 
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
@@ -885,10 +914,10 @@ a { color: inherit; text-decoration: none; }
         <div id="docTrack" style="display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scrollbar-width:thin;"></div>
       </div>
       <p id="docEmpty" style="font-family:var(--font-mono);font-size:13px;color:var(--muted);display:none;">
-        No files uploaded yet — add your .pptx and .pkt files to the <a href="https://github.com/euniceadj/Projects/tree/main/E-MAGINE" target="_blank" style="color:var(--accent);">E-MAGINE folder</a> to see them here.
+        No files uploaded yet. Add your .pptx and .pkt files to the <a href="https://github.com/euniceadj/Projects/tree/main/E-MAGINE" target="_blank" style="color:var(--accent);">E-MAGINE folder</a> to see them here.
       </p>
       <p id="docError" style="font-family:var(--font-mono);font-size:13px;color:var(--muted);display:none;">
-        Couldn't load files — <a href="https://github.com/euniceadj/Projects/tree/main/E-MAGINE" target="_blank" style="color:var(--accent);">view on GitHub</a> instead.
+        Couldn't load files. <a href="https://github.com/euniceadj/Projects/tree/main/E-MAGINE" target="_blank" style="color:var(--accent);">view on GitHub</a> instead.
       </p>
     </div>
 
