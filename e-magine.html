@@ -391,7 +391,7 @@ a { color: inherit; text-decoration: none; }
             <div class="site__name">Data Center · DataCenter-R1</div>
             <div class="site__role">Serial links to Orlando-Router0 AND Router2 (Main)</div>
             <div class="site__meta">
-              Spine: 3650-24PS × 2 · Leaf: 3650-24PS × 2<br>
+              Spine: Nexus 3900 × 2 · Leaf: Catalyst 9300 × 2<br>
               <code>VLAN 10</code> Management — AAA/TACACS+ · Syslog (172.16.10.x)<br>
               <code>VLAN 20</code> Infrastructure — DHCP · DNS (172.16.20.x)<br>
               <code>VLAN 30</code> ePHI — Mail · File Server (172.16.30.x)
@@ -401,7 +401,7 @@ a { color: inherit; text-decoration: none; }
 
         <div class="topo-note">
           <strong>WAN hub:</strong> Main-R1 connects via serial to Chicago-R1, Orlando-Router0, and directly to DataCenter-R1 (via Router2) · EIGRP AS 100 on all routers.<br>
-          <strong>DC path:</strong> DataCenter-R1 connects to both Orlando-Router0 and Router2 (Main) · ISR4331 → Spine1/Spine2 → Leaf switches → servers.<br>
+          <strong>DC path:</strong> DataCenter-R1 connects to both Orlando-Router0 and Router2 (Main) · DataCenter-R1 → Nexus 3900 spine → Catalyst 9300 leaf → servers.<br>
           <strong>Perimeter:</strong> Main-ASA and Orlando-ASA1 enforce zone-based policy · Extended ACLs on all routers · TACACS+ in DC VLAN 10.
         </div>
       </div>
@@ -466,16 +466,16 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 7h16M4 11h16M4 15h10"/></svg>
           </div>
           <h3>Port Security</h3>
-          <p>Sticky MAC addresses on all access switches (2960-24TT at Chicago/Main, 2960 at Orlando) with violation shutdown. Unauthorised devices blocked at port level.</p>
-          <span class="feature__tag">sticky MAC · shutdown</span>
+          <p>Sticky MAC addresses on all access switches (2960-24TT at Chicago/Main, 2960 at Orlando) with violation restrict. Unauthorised devices blocked at port level.</p>
+          <span class="feature__tag">sticky MAC · restrict</span>
         </div>
         <div class="feature">
           <div class="feature__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="6" height="6" rx="1"/><rect x="15" y="4" width="6" height="6" rx="1"/><rect x="3" y="14" width="6" height="6" rx="1"/><rect x="15" y="14" width="6" height="6" rx="1"/><path d="M9 7h6M9 17h6M6 10v4M18 10v4"/></svg>
           </div>
           <h3>Spine-Leaf DC Fabric</h3>
-          <p>Two 3650-24PS spine switches and two 3650-24PS leaf switches in the DC. VLANs 10, 20, and 30 servers verified reachable from leaf SVIs. Non-blocking east-west traffic.</p>
-          <span class="feature__tag">3650-24PS · non-blocking</span>
+          <p>Nexus 3900 spine switches and Catalyst 9300 leaf switches in the DC. VLANs 10, 20, and 30 servers verified reachable from leaf SVIs. Non-blocking east-west traffic.</p>
+          <span class="feature__tag">Nexus 3900 · Catalyst 9300</span>
         </div>
       </div>
     </div>
@@ -533,7 +533,7 @@ a { color: inherit; text-decoration: none; }
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
             <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Reasonable security: ACLs on Chicago-R1 limit exposure of Illinois resident data</li>
             <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Network controls: 2960-24TT switches with VLAN segmentation at branch</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification: Syslog and TACACS+ logs support 72-hour notification</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification: Syslog and TACACS+ logs support timely incident notification</li>
             <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Encrypted transit: all Chicago traffic crosses EIGRP WAN over authenticated links</li>
           </ul>
         </div>
@@ -553,8 +553,8 @@ a { color: inherit; text-decoration: none; }
           </div>
           <div>
             <div class="stack-item__cat">Perimeter</div>
-            <div class="stack-item__name">Cisco ASA 5506-X × 2</div>
-            <div class="stack-item__desc">Main-ASA0 (Main site) and Orlando-ASA1 (Orlando site). Zone-based policy, ACLs, DMZ, VPN endpoint at Main.</div>
+            <div class="stack-item__name">Cisco Firepower 1120 × 2</div>
+            <div class="stack-item__desc">Main site and Orlando site perimeter firewalls. Zone-based policy, ACLs, DMZ, and VPN endpoint at Main. Next-generation firewall with integrated threat defence.</div>
           </div>
         </div>
         <div class="stack-item">
@@ -563,8 +563,8 @@ a { color: inherit; text-decoration: none; }
           </div>
           <div>
             <div class="stack-item__cat">Routing</div>
-            <div class="stack-item__name">Cisco ISR 4331 × 3</div>
-            <div class="stack-item__desc">Main-R1, Main-R2, Main-R3 at Main site. DataCenter-R1 in DC. EIGRP AS 100, SSH v2, TACACS+ client. Modular design supports additional interface cards as traffic grows.</div>
+            <div class="stack-item__name">Cisco ISR 4331 × 4</div>
+            <div class="stack-item__desc">Main-R1, Main-R2, Main-R3 at Main site; DataCenter-R1 in DC. EIGRP AS 100, SSH v2, TACACS+ client. Modular design supports additional interface cards as traffic grows.</div>
           </div>
         </div>
         <div class="stack-item">
@@ -592,9 +592,19 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="6" height="6" rx="1"/><rect x="15" y="4" width="6" height="6" rx="1"/><rect x="3" y="14" width="6" height="6" rx="1"/><rect x="15" y="14" width="6" height="6" rx="1"/><path d="M9 7h6M9 17h6M6 10v4M18 10v4"/></svg>
           </div>
           <div>
-            <div class="stack-item__cat">Switching · DC Fabric</div>
-            <div class="stack-item__name">Cisco 3650-24PS × 4</div>
-            <div class="stack-item__desc">Spine1, Spine2 (spine layer) and two leaf switches. Hosts VLANs 10/20/30 with cross-connected uplinks.</div>
+            <div class="stack-item__cat">DC Spine · Fabric Core</div>
+            <div class="stack-item__name">Cisco Nexus 3900 × 2</div>
+            <div class="stack-item__desc">Spine layer of the DC fabric. Carries high-bandwidth east-west traffic between leaf nodes. High-capacity core switching for the spine-leaf architecture.</div>
+          </div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+          </div>
+          <div>
+            <div class="stack-item__cat">DC Leaf · Access Layer</div>
+            <div class="stack-item__name">Cisco Catalyst 9300 × 2</div>
+            <div class="stack-item__desc">Leaf layer of the DC fabric. Connects directly to servers across VLANs 10 (Management), 20 (Infrastructure), and 30 (ePHI). Each leaf connects to both spine switches for redundancy.</div>
           </div>
         </div>
         <div class="stack-item">
@@ -603,8 +613,8 @@ a { color: inherit; text-decoration: none; }
           </div>
           <div>
             <div class="stack-item__cat">Wireless</div>
-            <div class="stack-item__name">Linksys WRT300N × 2</div>
-            <div class="stack-item__desc">MainWifi (Main site) and Orlando-WirelessRouter (Orlando). WPA2 encryption. Guest and staff wireless access points.</div>
+            <div class="stack-item__name">Cisco Catalyst 9130AXI × 2</div>
+            <div class="stack-item__desc">Enterprise wireless access points at Main and Orlando. WPA2 encryption. Supports both guest and staff wireless networks with VLAN-based segmentation.</div>
           </div>
         </div>
         <div class="stack-item">
@@ -623,8 +633,8 @@ a { color: inherit; text-decoration: none; }
           </div>
           <div>
             <div class="stack-item__cat">Servers · DC VLAN 20</div>
-            <div class="stack-item__name">DHCP · DNS</div>
-            <div class="stack-item__desc">DHCP at 172.16.20.2. DNS at 172.16.20.3. Infrastructure services for all internal subnets.</div>
+            <div class="stack-item__name">DHCP</div>
+            <div class="stack-item__desc">DHCP at 172.16.20.2. Provides address allocation for all internal subnets. External DNS handled at 11.1.1.10.</div>
           </div>
         </div>
         <div class="stack-item">
@@ -704,8 +714,8 @@ a { color: inherit; text-decoration: none; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
           </div>
           <h3>Modular ISR Routers</h3>
-          <p>Modular ISR 4321 routers support additional interface cards as traffic demands grow. Bandwidth can be increased without replacing the entire router.</p>
-          <span class="feature__tag">ISR 4321 · modular</span>
+          <p>Modular ISR 4331 routers support additional interface cards as traffic demands grow. Bandwidth can be increased without replacing the entire router.</p>
+          <span class="feature__tag">ISR 4331 · modular</span>
         </div>
       </div>
     </div>
@@ -739,66 +749,9 @@ a { color: inherit; text-decoration: none; }
       </div>
     </div>
 
-    <!-- Licences -->
-    <div class="section box-dark" id="licences" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">08 — Licences</div>
-      <div class="section__title">Required licences</div>
-      <p class="section__desc">Software and subscription licences needed to operate the network</p>
-
-      <div style="overflow-x:auto; margin-bottom: 24px;">
-        <table style="width:100%; border-collapse:collapse; font-size:13px;">
-          <thead>
-            <tr>
-              <th style="background:var(--accent); color:#fff; padding:10px 14px; text-align:left; font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;">Category</th>
-              <th style="background:var(--accent); color:#fff; padding:10px 14px; text-align:left; font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;">Licence</th>
-              <th style="background:var(--accent); color:#fff; padding:10px 14px; text-align:left; font-family:var(--font-mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase;">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="background:#fff;"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">Firewall Security Bundle</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">Cisco FTD Threat + Malware + URL Filtering</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$2,000/yr</td></tr>
-            <tr style="background:var(--bg-2);"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">VPN Access</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">Cisco AnyConnect Apex</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$54/user/yr</td></tr>
-            <tr style="background:#fff;"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">Router Base Features</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">Cisco Network Essentials</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$300 one-time</td></tr>
-            <tr style="background:var(--bg-2);"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">Switch Base Features</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">Catalyst Network Essentials</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$150 one-time</td></tr>
-            <tr style="background:#fff;"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">Wireless AP Licence</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">Meraki MR Enterprise Licence</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$150/yr per AP</td></tr>
-            <tr style="background:var(--bg-2);"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">Server OS</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">Windows Server 2022 Standard</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$1,060 one-time</td></tr>
-            <tr style="background:#fff;"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">Endpoint OS</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">Windows 11 Enterprise E3</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$84/yr per device</td></tr>
-            <tr style="background:var(--bg-2);"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">Productivity Suite</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">Microsoft 365 E3</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$36/user/mo</td></tr>
-            <tr style="background:#fff;"><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink);">Endpoint Security</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2);">CrowdStrike Falcon Pro</td><td style="padding:10px 14px; border-bottom:1px solid var(--line-2); color:var(--ink-2); font-family:var(--font-mono);">$79.99/device/yr</td></tr>
-            <tr style="background:var(--bg-2);"><td style="padding:10px 14px; color:var(--ink);">Support Contracts</td><td style="padding:10px 14px; color:var(--ink-2);">Cisco SmartNet / Dell ProSupport</td><td style="padding:10px 14px; color:var(--ink-2); font-family:var(--font-mono);">~10% hardware/yr</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Annual vs One-Time summary -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-        <div style="background:#fff; border:1px solid var(--line-2); border-top:3px solid var(--accent); border-radius:var(--radius); padding:20px;">
-          <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;">Annual costs</div>
-          <div style="display:flex; flex-direction:column; gap:6px; font-size:13px;">
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Endpoint OS <span style="font-family:var(--font-mono);">$1,008</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Endpoint Security <span style="font-family:var(--font-mono);">$79.99</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Firewall Security Bundle <span style="font-family:var(--font-mono);">$2,000</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Productivity Suite <span style="font-family:var(--font-mono);">$432</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Support Contracts <span style="font-family:var(--font-mono);">$3,500</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">VPN Access <span style="font-family:var(--font-mono);">$5,000</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Wireless AP Licence <span style="font-family:var(--font-mono);">$150</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink); font-weight:600; border-top:1px solid var(--line-2); padding-top:8px; margin-top:4px;">Annual Total <span style="font-family:var(--font-mono);">$12,169</span></div>
-          </div>
-        </div>
-        <div style="background:#fff; border:1px solid var(--line-2); border-top:3px solid var(--accent); border-radius:var(--radius); padding:20px;">
-          <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;">One-time costs</div>
-          <div style="display:flex; flex-direction:column; gap:6px; font-size:13px;">
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Router Base Features <span style="font-family:var(--font-mono);">$300</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Server OS <span style="font-family:var(--font-mono);">$1,060</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink-2);">Switch Base Features <span style="font-family:var(--font-mono);">$150</span></div>
-            <div style="display:flex; justify-content:space-between; color:var(--ink); font-weight:600; border-top:1px solid var(--line-2); padding-top:8px; margin-top:4px;">One-Time Total <span style="font-family:var(--font-mono);">$1,510</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Risk Analysis -->
     <div class="section box-light" id="risk" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">09 — Risk Analysis</div>
+      <div class="section__label">08 — Risk Analysis</div>
       <div class="section__title">Threats &amp; mitigations</div>
       <p class="section__desc">Four risks identified with impact and likelihood ratings from the project</p>
       <!-- Risk table -->
@@ -844,7 +797,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Testing Results -->
     <div class="section box-dark" id="testing" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">10 — Validation</div>
+      <div class="section__label">09 — Validation</div>
       <div class="section__title">Live demo — physical build</div>
       <p class="section__desc">Orlando branch skeleton network on physical Cisco enterprise hardware</p>
       <!-- Scope note -->
@@ -876,9 +829,51 @@ a { color: inherit; text-decoration: none; }
       </div>
     </div>
 
-    <!-- README writeup (fetched live) -->
+    <!-- PT Simulation Notes -->
+    <div class="section box-light" id="pt-notes" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
+      <div class="section__label">11 — Simulation notes</div>
+      <div class="section__title">Packet Tracer adaptations</div>
+      <p class="section__desc">Where the simulation diverged from the production design and why</p>
+      <p style="font-size: 15px; color: var(--ink-2); line-height: 1.8; margin: 0 0 1.1em;">Cisco Packet Tracer does not support all production hardware or protocols. Several substitutions and architectural workarounds were made to simulate the network as closely as possible while working within the tool's constraints. These are documented here for transparency and should not be interpreted as design decisions.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+
+        <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
+          <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Perimeter Firewall</div>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design specifies the Cisco Firepower 1120 at Main and Orlando. Packet Tracer does not include the Firepower series, so the ASA 5506-X was used as a substitute. The ASA 5506-X supports the same zone-based policy, ACL enforcement, DMZ configuration, and VPN termination required by the design. Core security functionality was fully validated in simulation.</p>
+        </div>
+
+        <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
+          <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">DC Spine-Leaf Hardware</div>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design uses Cisco Nexus 3900 switches at the spine layer and Catalyst 9300 switches at the leaf layer. Packet Tracer does not include either device, so these were substituted with Catalyst 3650-24PS switches across both layers. The logical topology, VLAN assignments, and inter-switch links remain identical to the production design.</p>
+        </div>
+
+        <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
+          <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Wireless Access Points</div>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design uses Cisco Catalyst 9130AXI enterprise access points at Main and Orlando. Packet Tracer substitutes a Linksys WRT300N home router in wireless mode. The 9130AXI supports WPA2 Enterprise with 802.1X authentication; the WRT300N cannot simulate 802.1X flows. This is a documented PT limitation — the wireless security posture is correctly designed but could not be fully validated in simulation.</p>
+        </div>
+
+        <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
+          <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Remote Access VPN</div>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">In production, remote access VPN would terminate directly on the Main ASA alongside the DMZ interface, with remote workers assigned a dedicated address pool via the ASA's VPN configuration. Packet Tracer cannot fully simulate ASA VPN termination alongside DMZ zones simultaneously. The VPN was therefore simulated as a separate path: Remote User → HomeRouter-PT (VirtualNetwork) → dedicated Router → Main ASA. This represents the correct logical flow of authenticated remote access through the perimeter firewall, implemented as a topology workaround rather than a protocol limitation.</p>
+        </div>
+
+        <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
+          <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">EIGRP on Leaf Switches</div>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">EIGRP neighbour flapping was observed on the DC leaf switches throughout the project. This was identified as a Packet Tracer IOS 15.1 limitation on the substitute devices rather than a configuration error. The issue did not affect end-to-end connectivity verification, which was confirmed via SVI reachability tests on all three DC VLANs.</p>
+        </div>
+
+        <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
+          <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Dell Server Hardware</div>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production servers are 2x Dell PowerEdge T360 at Main (Finance/Operations and Sales/Marketing) and 5x Dell PowerEdge R750 at the DC (AAA/TACACS+, Syslog, DHCP, File, and App servers). Packet Tracer represents all servers as generic Server-PT devices. Service configurations (TACACS+, DHCP, Syslog) were applied through the PT service interfaces and function correctly within the simulation.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documentation -->
     <div class="section box-dark page-end" id="writeup" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">11 — Documentation</div>
+      <div class="section__label">10 — Documentation</div>
       <div class="section__title">Project documentation</div>
       <p class="section__desc">Files pulled live from the project repository. Upload your .pptx and .pkt files to see them here</p>
       <!-- File carousel -->
