@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eunice — Projects</title>
-<meta name="description" content="Eunice Adjei — cybersecurity projects, labs, and coursework.">
+<title>Eunice · Projects</title>
+<meta name="description" content="Eunice Adjei · cybersecurity projects, labs, and coursework.">
 <style>
 :root {
   --accent: #228B22; --accent-soft: #DCEEDD; --accent-ink: #155515;
@@ -92,8 +92,9 @@ a { color: inherit; text-decoration: none; }
 .skeleton__line--long  { width: 90%; }
 .skeleton__title { background: var(--bg-4); border-radius: 6px; height: 28px; width: 70%; margin: 16px 0 12px; }
 
-.project-card { background: var(--bg-2); border-radius: var(--radius); border: 1px solid var(--line-2); overflow: hidden; transition: background var(--t), transform var(--t); cursor: pointer; }
+.project-card { display: block; background: var(--bg-2); border-radius: var(--radius); border: 1px solid var(--line-2); overflow: hidden; transition: background var(--t), transform var(--t); cursor: pointer; }
 .project-card:hover { background: var(--bg-3); transform: translateY(-1px); }
+.project-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .project-card__inner { padding: clamp(24px, 4vw, 40px); }
 .project-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
 .project-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
@@ -149,7 +150,7 @@ a { color: inherit; text-decoration: none; }
 
     <div class="projects-grid" id="projectsGrid"></div>
     <p class="status-msg" id="emptyMsg">no projects match that filter yet.</p>
-    <p class="status-msg" id="errorMsg">couldn't load projects — check back shortly.</p>
+    <p class="status-msg" id="errorMsg">couldn't load projects. check back shortly.</p>
   </main>
 </div>
 
@@ -199,7 +200,7 @@ a { color: inherit; text-decoration: none; }
     const tags = (meta.tags || []).join(',');
     const displayTags = (meta.tags_display || []).map(t => `<span class="tag">${t}</span>`).join('');
     return `
-      <article class="project-card" data-tags="${tags}" onclick="window.location='${meta.page}'">
+      <a class="project-card" href="${meta.page}" data-tags="${tags}">
         <div class="project-card__inner">
           <div class="project-card__top">
             <div class="project-card__meta">
@@ -213,7 +214,7 @@ a { color: inherit; text-decoration: none; }
           <p class="project-card__desc">${meta.description}</p>
           <div class="project-card__tags">${displayTags}</div>
         </div>
-      </article>`;
+      </a>`;
   }
 
   async function loadProjects() {

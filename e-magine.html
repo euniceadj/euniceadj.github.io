@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Eunice Adjei — E-MAGINE</title>
-<meta name="description" content="E-MAGINE Healthcare Network Redesign — CYB330L project by Eunice Adjei.">
+<title>Eunice Adjei · E-MAGINE</title>
+<meta name="description" content="E-MAGINE Healthcare Network Redesign · CYB330L project by Eunice Adjei.">
 <style>
 :root {
-  /* Steel blue theme — E-MAGINE project page */
+  /* Steel blue theme: E-MAGINE project page */
   --accent: #1B4F8A; --accent-soft: #D0E4F7; --accent-ink: #0f2f54;
   --bg: #ffffff; --bg-2: #F0F5FB; --bg-3: #E2EDF7; --bg-4: #D4E4F2;
   --ink: #0f1e30; --ink-2: #2a4a6b; --muted: #5a7a9a;
@@ -116,6 +116,7 @@ a { color: inherit; text-decoration: none; }
 /* ── Topology ── */
 .topology { background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--radius); padding: clamp(20px, 3vw, 36px); }
 .topo-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; margin-bottom: 16px; }
+.topo-grid--5 { grid-template-columns: 1fr auto 1fr auto 1fr; }
 @media (max-width: 640px) { .topo-grid { grid-template-columns: 1fr; } }
 .site { background: var(--bg); border: 1px solid var(--line-2); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 18px; text-align: center; }
 .site--dc { border-top-color: var(--ink-2); }
@@ -155,6 +156,10 @@ a { color: inherit; text-decoration: none; }
 /* ── Compliance block ── */
 .compliance { background: var(--ink); color: var(--bg); border-radius: var(--radius); padding: clamp(24px, 4vw, 36px); display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
 @media (max-width: 640px) { .compliance { grid-template-columns: 1fr; gap: 20px; } }
+.state-cards { grid-template-columns: repeat(3,1fr); }
+@media (max-width: 640px) { .state-cards { grid-template-columns: 1fr; } }
+.validation-cards { grid-template-columns: repeat(2,1fr); }
+@media (max-width: 640px) { .validation-cards { grid-template-columns: 1fr; } }
 .compliance h3 { margin: 0 0 8px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
 .compliance p { margin: 0; font-size: 14px; opacity: 0.75; line-height: 1.6; }
 .compliance-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -183,7 +188,7 @@ a { color: inherit; text-decoration: none; }
 .writeup p { margin: 0 0 1em; }
 .writeup ul, .writeup ol { margin: 0 0 1em; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .writeup li { display: flex; gap: 12px; }
-.writeup li::before { content: "—"; color: var(--accent); flex-shrink: 0; font-family: var(--font-mono); }
+.writeup li::before { content: "•"; color: var(--accent); flex-shrink: 0; font-family: var(--font-mono); }
 .writeup strong { color: var(--ink); font-weight: 600; }
 .writeup code { font-family: var(--font-mono); font-size: 0.85em; background: var(--bg-3); padding: 2px 6px; border-radius: 4px; color: var(--accent); }
 .writeup hr { border: none; border-top: 1px solid var(--line-2); margin: 2em 0; }
@@ -259,7 +264,7 @@ a { color: inherit; text-decoration: none; }
       <!-- Name + role -->
       <div style="margin-bottom: 20px;">
         <span style="font-size: clamp(22px, 3vw, 30px); font-weight: 700; font-style: italic; font-family: var(--font-serif); color: #4A90C4; letter-spacing: -0.01em;">Eunice</span>
-        <span style="font-size: clamp(22px, 3vw, 30px); font-weight: 700; font-style: italic; font-family: var(--font-serif); color: #1B4F8A; margin-left: 10px;">— Project Lead</span>
+        <span style="font-size: clamp(22px, 3vw, 30px); font-weight: 700; font-style: italic; font-family: var(--font-serif); color: #1B4F8A; margin-left: 10px;">· Project Lead</span>
       </div>
       <!-- Blockquote -->
       <blockquote style="margin: 0; padding: 24px 28px; border-left: 4px solid #4A90C4; background: var(--bg-2); border-radius: 0 var(--radius) var(--radius) 0;">
@@ -287,14 +292,14 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Topology -->
     <div class="section box-dark" id="architecture" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">01 — Architecture</div>
+      <div class="section__label">01 · Architecture</div>
       <div class="section__title">Network topology</div>
       <p class="section__desc">Main-R1 is the WAN hub · DC connects via Orlando · VPN terminates at Main ASA</p>
 
       <div class="topology">
 
         <!-- Row 1: Internet → Main ASA → VPN -->
-        <div class="topo-grid" style="grid-template-columns: 1fr auto 1fr; margin-bottom: 12px;">
+        <div class="topo-grid" style="margin-bottom: 12px;">
           <div class="site">
             <div class="site__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2c-3 4-3 16 0 20M12 2c3 4 3 16 0 20"/></svg>
@@ -325,7 +330,7 @@ a { color: inherit; text-decoration: none; }
             <div class="site__icon" aria-hidden="true" style="background: var(--bg-4); color: var(--muted);">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </div>
-            <div class="site__name">VPN — VirtualNetwork</div>
+            <div class="site__name">VPN · VirtualNetwork</div>
             <div class="site__role">Remote access · HomeRouter-PT-AC</div>
             <div class="site__meta">Remote User PC → HomeRouter → Router → Main ASA<br>Simulates encrypted remote access tunnel</div>
           </div>
@@ -345,7 +350,7 @@ a { color: inherit; text-decoration: none; }
         </div>
 
         <!-- Row 3: Three spokes from Main-R1 -->
-        <div class="topo-grid" style="grid-template-columns: 1fr auto 1fr auto 1fr; margin-bottom: 12px;">
+        <div class="topo-grid topo-grid--5" style="margin-bottom: 12px;">
           <div class="site">
             <div class="site__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V5l9-3 9 3v16"/><path d="M3 21h18"/><path d="M9 21v-4h6v4"/></svg>
@@ -410,7 +415,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Features -->
     <div class="section box-light" id="features" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">02 — Design pillars</div>
+      <div class="section__label">02 · Design pillars</div>
       <div class="section__title">Key components</div>
       <p class="section__desc">Eight engineering controls each tied to a compliance requirement</p>
       <div class="features-grid">
@@ -491,7 +496,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Compliance -->
     <div class="section box-dark" id="compliance" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">03 — Compliance</div>
+      <div class="section__label">03 · Compliance</div>
       <div class="section__title">Regulatory mapping</div>
       <p class="section__desc">Federal frameworks plus per-site state data privacy law</p>
 
@@ -509,17 +514,17 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <!-- State cards -->
-      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap: 12px;">
+      <div class="state-cards" style="display:grid; gap: 12px;">
 
         <div style="background: var(--bg-2); border: 1px solid var(--line-2); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 20px 18px;">
           <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">Virginia · Main Site</div>
           <div style="font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px;">Virginia CDPA</div>
           <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px; font-family: var(--font-mono);">Consumer Data Protection Act</div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Data minimisation: ePHI access restricted to Finance and Clinical VLANs only</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Purpose limitation: ACLs on Main-R1 enforce traffic policy by role</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Security safeguards: Main ASA, DMZ, and TACACS+ audit logging</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Consumer rights: Syslog server at 172.16.10.3 enables access audit trail</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Data minimisation: ePHI access restricted to Finance and Clinical VLANs only</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Purpose limitation: ACLs on Main-R1 enforce traffic policy by role</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Security safeguards: Main ASA, DMZ, and TACACS+ audit logging</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Consumer rights: Syslog server at 172.16.10.3 enables access audit trail</li>
           </ul>
         </div>
 
@@ -528,10 +533,10 @@ a { color: inherit; text-decoration: none; }
           <div style="font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px;">Florida FIPA</div>
           <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px; font-family: var(--font-mono);">Florida Information Protection Act</div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Independent security boundary: Orlando-ASA1 enforces a separate perimeter from the Main site, limiting the scope of any Florida-side incident</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Traffic segmentation: five VLANs (10, 20, 30, 40, 50) isolate traffic by function at the Orlando branch, preventing lateral movement between segments</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification support: centralised Syslog at 172.16.10.3 and TACACS+ audit logs support FIPA's 30-day notification requirement</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Access control: port security with sticky MAC and violation restrict on Orlando switches prevents unauthorised device attachment</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Independent security boundary: Orlando-ASA1 enforces a separate perimeter from the Main site, limiting the scope of any Florida-side incident</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Traffic segmentation: five VLANs (10, 20, 30, 40, 50) isolate traffic by function at the Orlando branch, preventing lateral movement between segments</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Breach notification support: centralised Syslog at 172.16.10.3 and TACACS+ audit logs support FIPA's 30-day notification requirement</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Access control: port security with sticky MAC and violation restrict on Orlando switches prevents unauthorised device attachment</li>
           </ul>
         </div>
 
@@ -540,10 +545,10 @@ a { color: inherit; text-decoration: none; }
           <div style="font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px;">Illinois PIPA</div>
           <div style="font-size: 12px; color: var(--muted); margin-bottom: 14px; font-family: var(--font-mono);">Personal Information Protection Act</div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Reasonable security: ACLs on Chicago-R1 limit exposure of Illinois resident data</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Network controls: 2960-24TT switches with VLAN segmentation at branch</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Breach notification: Syslog and TACACS+ logs support timely incident notification</li>
-            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">—</span>Encrypted transit: all Chicago traffic crosses EIGRP WAN over authenticated links</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Reasonable security: ACLs on Chicago-R1 limit exposure of Illinois resident data</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Network controls: 2960-24TT switches with VLAN segmentation at branch</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Breach notification: Syslog and TACACS+ logs support timely incident notification</li>
+            <li style="font-size:13px; color: var(--ink-2); display:flex; gap:10px;"><span style="color:var(--accent); font-family:var(--font-mono); flex-shrink:0;">•</span>Encrypted transit: all Chicago traffic crosses EIGRP WAN over authenticated links</li>
           </ul>
         </div>
 
@@ -552,7 +557,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Stack -->
     <div class="section box-light" id="stack" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">04 — Stack</div>
+      <div class="section__label">04 · Stack</div>
       <div class="section__title">Device inventory</div>
       <p class="section__desc">Actual hardware modelled in the Packet Tracer topology</p>
       <div class="stack-grid">
@@ -681,7 +686,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Efficiency -->
     <div class="section box-light" id="efficiency" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">05 — Efficiency</div>
+      <div class="section__label">05 · Efficiency</div>
       <div class="section__title">Network efficiency</div>
       <p class="section__desc">How the design optimises performance across all four sites</p>
       <div style="display:flex; flex-direction:column; gap:10px;">
@@ -702,7 +707,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Scalability -->
     <div class="section box-dark" id="scalability" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">06 — Scalability</div>
+      <div class="section__label">06 · Scalability</div>
       <div class="section__title">Built to grow</div>
       <p class="section__desc">How the design accommodates future expansion without redesign</p>
       <div class="features-grid">
@@ -751,7 +756,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Resilience -->
     <div class="section box-light" id="resilience" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">07 — Resilience</div>
+      <div class="section__label">07 · Resilience</div>
       <div class="section__title">Network resilience</div>
       <p class="section__desc">Redundancy and fault tolerance built into every layer</p>
       <div style="display:flex; flex-direction:column; gap:10px;">
@@ -780,7 +785,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Risk Analysis -->
     <div class="section box-light" id="risk" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">08 — Risk Analysis</div>
+      <div class="section__label">08 · Risk Analysis</div>
       <div class="section__title">Threats &amp; mitigations</div>
       <p class="section__desc">Four risks identified with impact and likelihood ratings from the project</p>
       <!-- Risk table -->
@@ -826,7 +831,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Testing Results -->
     <div class="section box-dark" id="testing" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">09 — Validation</div>
+      <div class="section__label">09 · Validation</div>
       <div class="section__title">Live demo: physical build</div>
       <p class="section__desc">Orlando branch skeleton network on physical Cisco enterprise hardware</p>
       <!-- Scope note -->
@@ -834,7 +839,7 @@ a { color: inherit; text-decoration: none; }
         <strong style="color: var(--accent);">Scope:</strong> The live demo used physical Cisco enterprise equipment to build the <strong>Orlando branch site</strong> as a proof-of-concept skeleton network. The remaining sites (Main, Chicago, Data Center) exist in the Packet Tracer simulation. Orlando was selected because it incorporates the core design elements: inter-VLAN routing, local DHCP, ACLs, ASA firewall, and EIGRP, sufficient to validate the full design on real hardware. The wireless segment was excluded from the physical demo as the available router only had two GigE ports, both required for the ASA uplink and switch trunk.
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;">
+      <div class="validation-cards" style="display: grid; gap: 12px;">
         <div style="background: #ffffff; border: 1px solid var(--line-2); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 18px 20px;">
           <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;">Physical Equipment Used</div>
           <p style="font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.6;">Cisco ISR Router (2x GigabitEthernet, 2x Serial) · Cisco Catalyst 48-port switch · Cisco ASA 5506-X. All enterprise-grade, consistent with project equipment recommendations.</p>
@@ -860,7 +865,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- PT Simulation Notes -->
     <div class="section box-light" id="pt-notes" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">11 — Simulation notes</div>
+      <div class="section__label">11 · Simulation notes</div>
       <div class="section__title">Packet Tracer adaptations</div>
       <p class="section__desc">Where the simulation diverged from the production design and why</p>
       <p style="font-size: 15px; color: var(--ink-2); line-height: 1.8; margin: 0 0 1.1em;">Cisco Packet Tracer does not support all production hardware or protocols. Several substitutions and architectural workarounds were made to simulate the network as closely as possible while working within the tool's constraints. These are documented here for transparency and should not be interpreted as design decisions.</p>
@@ -879,7 +884,7 @@ a { color: inherit; text-decoration: none; }
 
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
           <div style="font-size:14px; font-weight:600; color:var(--ink); margin-bottom:6px;">Wireless Access Points</div>
-          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design uses Cisco Catalyst 9130AXI enterprise access points at Main and Orlando. Packet Tracer substitutes a Linksys WRT300N home router in wireless mode. RADIUS authentication was configured on the AAA server at 172.16.10.2 with the WLC registered as a client (192.168.23.2, shared secret Ecpi1234), targeting WPA2 Enterprise / 802.1X for staff wireless. However the WRT300N cannot simulate 802.1X authentication flows. This is a documented PT device limitation. The RADIUS configuration is in place and correct; full wireless auth validation requires production hardware.</p>
+          <p style="font-size:14px; color:var(--ink-2); margin:0; line-height:1.7;">Production design uses Cisco Catalyst 9130AXI enterprise access points at Main and Orlando. Packet Tracer substitutes a Linksys WRT300N home router in wireless mode. RADIUS authentication was configured on the AAA server at 172.16.10.2 with the WLC registered as a client (192.168.23.2, shared secret [REDACTED: LAB CONFIGURATION]), targeting WPA2 Enterprise / 802.1X for staff wireless. However the WRT300N cannot simulate 802.1X authentication flows. This is a documented PT device limitation. The RADIUS configuration is in place and correct; full wireless auth validation requires production hardware.</p>
         </div>
 
         <div style="background:#fff; border:1px solid var(--line-2); border-left:3px solid var(--accent); border-radius:var(--radius); padding:18px 20px;">
@@ -902,7 +907,7 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Documentation -->
     <div class="section box-dark page-end" id="writeup" style="padding: clamp(24px,4vw,48px); border-radius: var(--radius);">
-      <div class="section__label">10 — Documentation</div>
+      <div class="section__label">10 · Documentation</div>
       <div class="section__title">Project documentation</div>
       <p class="section__desc">Files pulled live from the project repository. Upload your .pptx and .pkt files to see them here</p>
       <!-- File carousel -->
@@ -940,7 +945,7 @@ a { color: inherit; text-decoration: none; }
     } catch(e) {}
   }
   function applyTheme(p) {
-    // Never set data-accent — this page controls its own colours via CSS
+    // Never set data-accent: this page controls its own colours via CSS
     document.documentElement.dataset.dark = p.darkMode ? "true" : "false";
     document.getElementById('themeLabel').textContent = p.darkMode ? "dark" : "light";
   }
