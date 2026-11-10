@@ -1,0 +1,68 @@
+# Publishes the website to GitHub Pages and adds the newest CV from the
+# private euniceadj/CV repository as /resume.pdf.
+#
+# Runs when the website is updated (push to main) or when started by hand
+# (Actions tab > Deploy site > Run workflow), for example after uploading a
+# new CV. The CV PDF is added only to the published copy of the site; it is
+# never committed to this repository.
+#
+# Needs the repository secret CV_READ_TOKEN: a fine-grained personal access
+# token limited to the CV repository with "Contents: Read-only" permission.
+
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get website files
+        uses: actions/checkout@v4
+        with:
+          path: site
+          persist-credentials: false
+
+      - name: Get CV files (private repository, read-only token)
+        uses: actions/checkout@v4
+        with:
+          repository: euniceadj/CV
+          token: ${{ secrets.CV_READ_TOKEN }}
+          path: cv
+          persist-credentials: false
+
+      - name: Assemble site with the newest CV
+        run: python3 site/.github/scripts/build_site.py site cv _site
+
+      - name: Remove CV files from the runner
+        if: always()
+        run: rm -rf cv
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
